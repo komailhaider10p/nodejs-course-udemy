@@ -1,0 +1,33 @@
+{
+  "name": "nodejs-course-udemy",
+  "version": "1.0.0",
+  "description": "Node JS hands on as per course from Udemy",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/komailhaider10p/nodejs-course-udemy.git"
+  },
+  "keywords": [
+    "NodeJS",
+    "Udemy",
+    "Express",
+    "Sequalize"
+  ],
+  "author": "Komail Haider",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/komailhaider10p/nodejs-course-udemy/issues"
+  },
+  "homepage": "https://github.com/komailhaider10p/nodejs-course-udemy#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
