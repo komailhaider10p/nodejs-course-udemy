@@ -1,0 +1,18 @@
+doctype html
+head
+  meta(charset='utf-8')
+  meta(http-equiv='x-ua-compatible' content='ie=edge')
+  meta(name='viewport' content='width=device-width, initial-scale=1')
+  title #{docTitle}
+  link(rel='stylesheet' href='../css/main.css')
+  block styles
+
+body
+    header.main-header
+        nav.main-nav
+            ul.topnav
+                li 
+                    a(href="/") Home
+                li
+                    a(href="/admin/add-product") Add Product
+    block content

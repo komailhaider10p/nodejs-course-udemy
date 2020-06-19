@@ -1,17 +1,32 @@
-const express = require('express');
-const app = express();
-const rootDir = require("./utils/path");
 const path = require('path');
+
+const express = require('express');
 const bodyParser = require('body-parser');
-const adminroutes = require('./routes/admin');
-const shoproutes = require('./routes/shop');
-app.use(express.static(path.join(rootDir, "public")))
+
+const errorController = require('./controllers/error');
+const sequelize = require('./util/database');
+const app = express();
+
+app.set('view engine', 'ejs');
+app.set('views', 'views');
+
+const adminRoutes = require('./routes/admin');
+const shopRoutes = require('./routes/shop');
+
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use("/admin", adminroutes);
-app.use(shoproutes);
-app.use((req, res) => {
-    res.status(404).sendFile(path.join(rootDir, "views", "404.html"));
-});
-const port = 3000;
-app.listen(port);
-console.log(`Server started listening at ${port}`);
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use('/admin', adminRoutes);
+app.use(shopRoutes);
+
+app.use(errorController.get404);
+sequelize.sync()
+    .then(() => {
+        console.log('Connection has been established successfully.');
+        app.listen(3000);
+        console.log('Site has been started...');
+    })
+    .catch(err => {
+        console.error('Unable to connect to the database:', err);
+    });
+
